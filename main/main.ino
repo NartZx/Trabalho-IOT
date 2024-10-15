@@ -1,42 +1,76 @@
-#include "WiFi.h"
-#include "SevSeg.h"
+int mesa1 = 34;
+int mesa2 = 35;
+int mesa3 = 32;
+int mesa4 = 33;
+int mesa5 = 25;
+
+
 
 // Declarar pinos dos botões, leds e do display fora do void setup e loop pra serem globais.
-// DIferenciar o que é cada coisa dos pinos por comentários.
+
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("Hello, ESP32!");
-  Serial.println("Initializing WiFi...");
-  WiFi.mode(WIFI_STA);
-  Serial.println("Setup done!");
-  pinMode(34, INPUT);
-  pinMode(35, INPUT);
-  pinMode(32, INPUT);
-  pinMode(33, INPUT);
-  pinMode(25, INPUT);
+  
+  
+  
+  pinMode(mesa1, INPUT); // Chamar Mesa 1
+  pinMode(mesa2, INPUT); // Chamar Mesa 2
+  pinMode(mesa3, INPUT); // Chamar Mesa 3
+  pinMode(mesa4, INPUT); // Chamar Mesa 4
+  pinMode(mesa5, INPUT); // Chamar Mesa 5
+ 
 }
 
 void loop() {
-  switch() {
-  case 34:
-    Serial.println('1');
-   break;
+ if(Serial.available() > 0){ 
+   char letra = Serial.read();
   
-  case 35:
-    Serial.println('2');
-   break;
+  switch(letra) {             // Colocar um argumento depois real
+   
+     case '1':
+     
+       digitalWrite(mesa1,1);
+       Serial.println('1');
+       
+     
+       break;
+    
   
-  case 32:
-    Serial.println('3');
-   break;
-  
-  case 33:
-    Serial.println('4');
-   break;
-
-  case 25:
-    Serial.println('5');
-   break; 
+      case '2':
+    
+       digitalWrite(mesa2,1);
+       Serial.println('2');
+       
+       break;
+    
+     
+      case '3':
+     
+       digitalWrite(mesa3,1);
+       Serial.println('3');
+       
+       break;
+     
+      
+      case '4':
+     
+       digitalWrite(mesa4,1);
+       Serial.println('4');
+       
+       break;
+     
+    
+      case '5':
+      
+       digitalWrite(mesa5,1);
+       Serial.println('5');
+       
+       break;
+      
+   }
+  } else{
+   
   }
+
 }
